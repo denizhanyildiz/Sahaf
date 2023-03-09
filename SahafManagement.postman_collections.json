@@ -512,7 +512,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/bookstorerent/rent?userId=2&bookstoreId=1&bookId=1&rentalDate=2023-03-07&returnDate=2023-03-14",
+					"raw": "http://localhost:8080/bookstorerent/rent?userId=1&bookstoreId=1&bookId=1&rentalDate=2023-03-07&returnDate=2023-03-14",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -525,7 +525,7 @@
 					"query": [
 						{
 							"key": "userId",
-							"value": "2"
+							"value": "1"
 						},
 						{
 							"key": "bookstoreId",

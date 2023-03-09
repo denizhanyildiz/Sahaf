@@ -25,7 +25,7 @@ public class BookstoreBuysBooksController {
     public ResponseEntity<String> saveBookToBookstore(@PathVariable Long bookId, @PathVariable Long bookstoreId) {
         try {
             bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
-            return ResponseEntity.ok( "Book store #"+bookstoreId + "bought book #" + bookId);
+            return ResponseEntity.ok( "Book store #"+bookstoreId + " bought book #" + bookId);
         } catch (BookstoreNotFoundException | BookNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
