@@ -39,12 +39,11 @@ Ilgili kitapçıya kitap tanımlandıktan sonra kullanıcılar ilgili kitaçıda
 
 http://localhost:8080/bookstorerent/rent
 
-  KEYS          VALUE
-  userId        1
-  bookstoreId   1
-  bookId        2023-03-07
-  returnDate    2023-03-14
-  
+Query Param API Sırasıyla Key ve örnek Valuelar,
+
+KEYS: userId, bookstoreId, bookId, rentalDate, returnDate
+VALUE: 1, 1, 1, 2023-03-07, 2023-03-14
+
 Not: Kitap başka bir kitapçıda yoksa ve kiralanmışsa başka bir kullanıcı tarafından kiralanamaz.
   
   
