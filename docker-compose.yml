@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: bookstoremanager
+    ports:
+      - "3306:3306"
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - mysql-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bookstoremanager?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_SECURITY_USER_NAME: user
+      SPRING_SECURITY_USER_PASSWORD: password
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:
