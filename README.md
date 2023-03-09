@@ -3,11 +3,11 @@ Sahaf Manager Application
 
 Uygulamayı Docker ile başlatmak için bilgisayaranızda docker yüklü olması gerekmektedir;
 
-1- Terminale aşağıdaki kodu yazınız.
+*Terminale aşağıdaki kodu yazınız.
   
 'docker build .' 
 
-2-Docker build olduktan sonra
+*Docker build olduktan sonra
   
 'docker-compose up' 
 
@@ -21,21 +21,23 @@ Uygulamayı manuel olarak po düzgün test edilebilmesi için aşağıdaki adım
 
 Bu API ile sisteme ilk başta kullanıcı tanımlanmalıdır, zira BasicAuth olmayan tek API dir ve öteki APIlern kullanılması için kullanıcıya ROLE_ADMIN rolü tanımlanmaldır.
 
+1. İlk olarak veri tabanına kullanıcı kaydedilir
+
 http://localhost:8080/user/save
 
-Bu API ile sisteme bir adet kitap kaydedilmelidir.
+2.Bu API ile sisteme bir adet kitap kaydedilmelidir.
 
 http://localhost:8080/book/save
 
-Bu API ile sisteme kitapçı kaydedilmelidir.
+3.Bu API ile sisteme kitapçı kaydedilmelidir.
 
 http://localhost:8080/bookstore/save
 
-Kaydedilen 1 idli kitabın, kitapçıya tanımlanması gerekmektdir.
+4.Kaydedilen 1 idli kitabın, kitapçıya tanımlanması gerekmektdir.
 
 http://localhost:8080/bookstorepurchase/book/{bookId}/add-to-bookstore/{booksotreId}
 
-Ilgili kitapçıya kitap tanımlandıktan sonra kullanıcılar ilgili kitaçıdan kitabı kiralamak için aşağıdaki API kullanılır. Bu API headerına Param key value bilgileri yazılmalıdır. 
+5.Ilgili kitapçıya kitap tanımlandıktan sonra kullanıcılar ilgili kitaçıdan kitabı kiralamak için aşağıdaki API kullanılır. Bu API headerına Param key value bilgileri yazılmalıdır. 
 
 http://localhost:8080/bookstorerent/rent
 
