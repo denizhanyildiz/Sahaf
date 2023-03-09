@@ -22,7 +22,7 @@ Uygulamayı manuel olarak Postman ile düzgün test edilebilmesi için aşağıd
 
 /user/save APIsi ile sisteme ilk başta kullanıcı tanımlanmalıdır, zira /user/save BasicAuth olmayan tek API dir ve öteki APIlern kullanılması için kullanıcıya ROLE_ADMIN rolü tanımlanmaldır.
 
-1. İlk olarak veri tabanına kullanıcı kaydedilir
+1.İlk olarak veri tabanına kullanıcı kaydedilir
 
 http://localhost:8080/user/save
 
