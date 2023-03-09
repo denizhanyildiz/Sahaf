@@ -59,7 +59,8 @@ Daha sonra kitap ilgili kullanıcı ile ilişkili listeye eklenir ve daha sonra 
                     bookRental.getBookstore().getBookstoreId().equals(bookstore.getBookstoreId())).collect(Collectors.toList());
             for (BookRental rental : rentals) {
                 if (rental.getRentalDate().isBefore(returnDate) && rental.getReturnDate().isAfter(rentalDate)) {
-                    throw new BookNotAvailableException(rental.getRentalDate() + " - " + rental.getReturnDate() + " tarihler arasında kitap farklı kullanıcıdadır..");
+                    throw new BookNotAvailableException(rental.getRentalDate() + " - " + rental.getReturnDate() +
+                            " tarihler arasında"+ bookstore.getBookstoreName() + " adlı sahaftaki " + "kitap farklı kullanıcıya kiralanmıştır.");
                 }
             }
 

@@ -27,8 +27,6 @@ public class Log {
     private String requestUrl;
     @Column(name = "request_method")
     private String requestMethod;
-    @Column(name = "request_body")
-    private String requestBody;
     @Column(name = "response_status")
     private int responseStatus;
     @Column(name = "response_body")
