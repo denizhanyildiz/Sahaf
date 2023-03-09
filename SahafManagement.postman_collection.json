@@ -12,13 +12,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "username",
-							"value": "Denizhan",
+							"key": "password",
+							"value": "12345",
 							"type": "string"
 						},
 						{
-							"key": "password",
-							"value": "12345",
+							"key": "username",
+							"value": "Denizhan",
 							"type": "string"
 						}
 					]
@@ -276,6 +276,41 @@
 			"response": []
 		},
 		{
+			"name": "User Get",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Denizhan",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Book Save",
 			"request": {
 				"auth": {
@@ -407,13 +442,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "username",
-							"value": "Denizhan",
+							"key": "password",
+							"value": "12345",
 							"type": "string"
 						},
 						{
-							"key": "password",
-							"value": "12345",
+							"key": "username",
+							"value": "Denizhan",
 							"type": "string"
 						}
 					]
