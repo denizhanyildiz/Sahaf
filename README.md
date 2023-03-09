@@ -5,19 +5,19 @@ Uygulamayı Docker ile başlatmak için bilgisayaranızda docker yüklü olması
 
 1- Terminale aşağıdaki kodu yazınız.
   
-docker build .
+'docker build .' 
 
 2-Docker build olduktan sonra
   
-docker-compose up
+'docker-compose up' 
 
 kodu yazılır ve sahaf uygulamasıyla mysql conteinerları aynı network ile iletişim kurarak bilgisayarımızda ayağa kalkmış olur.
 
-Uygulama /Sahaf dosya yolunun altında bulunan Postman Collection ile test edebilirsiniz.
+Uygulama /Sahaf dosya yolunun altında bulunan Postman Collection dosyasını Postman'e import ederek test edebilirsiniz.
 
 Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır.
 
-Uygulamayı manuel olarak düzgün test edilebilmesi için aşağıdaki adımların sırayla yapılması gerekmektedir.
+Uygulamayı manuel olarak po düzgün test edilebilmesi için aşağıdaki adımların sırayla yapılması gerekmektedir.
 
 Bu API ile sisteme ilk başta kullanıcı tanımlanmalıdır, zira BasicAuth olmayan tek API dir ve öteki APIlern kullanılması için kullanıcıya ROLE_ADMIN rolü tanımlanmaldır.
 
@@ -35,7 +35,7 @@ Kaydedilen 1 idli kitabın, kitapçıya tanımlanması gerekmektdir.
 
 http://localhost:8080/bookstorepurchase/book/{bookId}/add-to-bookstore/{booksotreId}
 
-Ilgili kitapçıya kitap tanımlandıktan sonra kullanıcılar ilgili kitaçıdan kitabı kiralamak için aşağıdaki apı kullanılır.
+Ilgili kitapçıya kitap tanımlandıktan sonra kullanıcılar ilgili kitaçıdan kitabı kiralamak için aşağıdaki API kullanılır. Bu API headerına Param key value bilgileri yazılmalıdır. 
 
 http://localhost:8080/bookstorerent/rent
 
@@ -45,7 +45,7 @@ KEYS: userId, bookstoreId, bookId, rentalDate, returnDate
 
 VALUE: 1, 1, 1, 2023-03-07, 2023-03-14
 
-Not: Kitap başka bir kitapçıda yoksa ve kiralanmışsa başka bir kullanıcı tarafından kiralanamaz.
+Not: Kitap başka bir kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir. 
   
   
   
