@@ -42,6 +42,7 @@ http://localhost:8080/bookstorerent/rent
 Query Param API Sırasıyla Key ve örnek Valuelar,
 
 KEYS: userId, bookstoreId, bookId, rentalDate, returnDate
+
 VALUE: 1, 1, 1, 2023-03-07, 2023-03-14
 
 Not: Kitap başka bir kitapçıda yoksa ve kiralanmışsa başka bir kullanıcı tarafından kiralanamaz.
