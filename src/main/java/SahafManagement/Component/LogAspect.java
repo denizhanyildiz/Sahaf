@@ -1,7 +1,11 @@
 package SahafManagement.Component;
 
 import SahafManagement.Entity.Log;
+import SahafManagement.Entity.User;
 import SahafManagement.Repository.ILogRepository;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -13,8 +17,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
 restController metodu @RestController anatasyonu eklenmiş tüm metodları belirleyen bir Pointcut tanımlar.
@@ -41,6 +51,7 @@ public class LogAspect {
 
     @Around("restController()")
     public Object logRestController(ProceedingJoinPoint joinPoint) throws Throwable {
+
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String requestUrl = request.getRequestURL().toString();
         String requestMethod = request.getMethod();

@@ -32,4 +32,7 @@ public class BookRental {
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
+    @ManyToOne
+    @JoinColumn(name = "bookstore_id")
+    private Bookstore bookstore;
 }
