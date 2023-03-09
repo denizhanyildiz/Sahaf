@@ -20,12 +20,15 @@ Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmı
 Uygulamayı manuel olarak düzgün test edilebilmesi için aşağıdaki adımların sırayla yapılması gerekmektedir.
 
 Bu API ile sisteme ilk başta kullanıcı tanımlanmalıdır, zira BasicAuth olmayan tek API dir ve öteki APIlern kullanılması için kullanıcıya ROLE_ADMIN rolü tanımlanmaldır.
+
 http://localhost:8080/user/save
 
 Bu API ile sisteme bir adet kitap kaydedilmelidir.
+
 http://localhost:8080/book/save
 
 Bu API ile sisteme kitapçı kaydedilmelidir.
+
 http://localhost:8080/bookstore/save
 
 Kaydedilen 1 idli kitabın, kitapçıya tanımlanması gerekmektdir.
@@ -35,6 +38,7 @@ http://localhost:8080/bookstorepurchase/book/{bookId}/add-to-bookstore/{booksotr
 Ilgili kitapçıya kitap tanımlandıktan sonra kullanıcılar ilgili kitaçıdan kitabı kiralamak için aşağıdaki apı kullanılır.
 
 http://localhost:8080/bookstorerent/rent
+
   KEYS          VALUE
   userId        1
   bookstoreId   1
