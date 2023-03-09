@@ -34,16 +34,16 @@ public class BookstoreRentalReportServiceTest {
         Bookstore bookstore = new Bookstore();
         book.setBookBookstores(Arrays.asList(bookstore));
         BookRental rental = new BookRental(1L, rentalDate, null, book, bookstore);
-        List<BookRental> rentals = Arrays.asList(rental);
+        List<BookRental> rentalList = Arrays.asList(rental);
 
         // Set up mock repository to return test data
-        when(iBookRentalRepository.findBookRentalsByRentalDate(rentalDate)).thenReturn(rentals);
+        when(iBookRentalRepository.findBookRentalsByRentalDate(rentalDate)).thenReturn(rentalList);
 
         // Call the method being tested
-        List<BookRental> dailyRentals = bookstoreRentalReportService.countDailyBookRentalsFromBookstores(rentalDate);
+        List<BookRental> dailyRentalList = bookstoreRentalReportService.countDailyBookRentalsFromBookstores(rentalDate);
 
         // Verify the results
-        assertEquals(1, dailyRentals.size());
-        assertEquals(rental, dailyRentals.get(0));
+        assertEquals(1, dailyRentalList.size());
+        assertEquals(rental, dailyRentalList.get(0));
     }
 }

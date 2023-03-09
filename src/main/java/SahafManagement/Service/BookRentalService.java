@@ -43,19 +43,16 @@ Daha sonra kitap ilgili kullanıcı ile ilişkili listeye eklenir ve daha sonra 
 
     public void rentBook(Long userId, Long bookstoreId, Long bookId, LocalDate rentalDate, LocalDate returnDate)
                 throws BookNotFoundException, UserNotFoundException, BookstoreNotFoundException, BookNotAvailableException {
-            //Kullanıcıyı bul
+
             User user = userRepository.findById(userId)
                     .orElseThrow(() -> new UserNotFoundException( userId +" id li kullanıcı bulunamadı.."));
 
-            //Kitapçıyı bul
             Bookstore bookstore = bookstoreRepository.findById(bookstoreId)
                     .orElseThrow(() -> new BookstoreNotFoundException(bookstoreId + " id li sahaf bulunamadı.."));
 
-            //Kitabı bul
             Book book = bookRepository.findById(bookId)
                     .orElseThrow(() -> new BookNotFoundException(bookId + " id li kitap bulunamadı"));
 
-            //Kitapların, kiralanabilir olduğunu kontrol et
             List<BookRental> rentals = book.getUserBookRental().stream().filter(bookRental ->
                     bookRental.getBookstore().getBookstoreId().equals(bookstore.getBookstoreId())).collect(Collectors.toList());
             for (BookRental rental : rentals) {
@@ -65,14 +62,12 @@ Daha sonra kitap ilgili kullanıcı ile ilişkili listeye eklenir ve daha sonra 
                 }
             }
 
-            //Kiralama ve geri getire tarihlerini kitap bilgisini ayarlar.
             BookRental rental = new BookRental();
             rental.setBook(book);
             rental.setRentalDate(rentalDate);
             rental.setReturnDate(returnDate);
             rental.setBookstore(bookstore);
 
-            //Kiralamayı kullanıcı için kaydet
             rentals.add(rental);
             book.setUserBookRental(rentals);
 
@@ -80,7 +75,6 @@ Daha sonra kitap ilgili kullanıcı ile ilişkili listeye eklenir ve daha sonra 
             userList.add(user);
             book.setBooksUsers(userList);
 
-            // Değişiklikleri veri tabanına kaydet
             bookRentalRepository.save(rental);
             bookRepository.save(book);
             userRepository.save(user);

@@ -41,7 +41,6 @@ public class LogAspect {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String requestUrl = request.getRequestURL().toString();
         String requestMethod = request.getMethod();
-        //String requestBody = IOUtils.toString(request.getReader());
 
         Object response = joinPoint.proceed();
 
@@ -57,7 +56,6 @@ public class LogAspect {
         Log log = new Log();
         log.setRequestUrl(requestUrl);
         log.setRequestMethod(requestMethod);
-        //log.setRequestBody(requestBody);
         log.setResponseStatus(responseStatus);
         log.setResponseBody(responseBody);
         log.setCreatedAt(new Date());

@@ -10,7 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -35,7 +34,7 @@ public class BookServiceTest {
         Book savedBook = bookService.saveBook(book);
 
         // Verify that the save() method was called on the book repository with the same book instance
-        Mockito.verify(bookRepository, times(1)).save(book);
+        Mockito.verify(bookRepository).save(book);
 
         // Verify that the saved book instance is the same as the original book instance
         assertEquals(book, savedBook);

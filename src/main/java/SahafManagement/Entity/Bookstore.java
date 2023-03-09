@@ -33,5 +33,4 @@ public class Bookstore {
     @ManyToMany(mappedBy = "bookBookstores", cascade = CascadeType.ALL)
     @JsonSerialize(using = BookSerializer.class)
     private List<Book> bookstoreBooks;
-
 }

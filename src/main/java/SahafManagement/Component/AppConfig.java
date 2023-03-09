@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /*
-LogAspect sınıfının, @RestController ile açıklama eklenmiş sınıflara yapılan yöntem çağrılarını engelleryerek
+LogAspect sınıfının, @RestController ile açıklama eklenmiş sınıflara yapılan yöntem çağrılarını engelleyerek
  request ve responselar ile ilgili bilgileri günlüğe kaydeden bir tavsiyesi vardır.
  */
 

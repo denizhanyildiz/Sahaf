@@ -23,9 +23,6 @@ public class BookSerializer extends JsonSerializer<List<Book>> {
             jsonGenerator.writeStartObject();
             jsonGenerator.writeObjectField("bookId", book.getBookId());
             jsonGenerator.writeObjectField("bookName", book.getBookName());
-            //jsonGenerator.writeObjectField("bookBookstores", book.getBookBookstores());
-            //jsonGenerator.writeObjectField("userBookRental", book.getUserBookRental());
-            //jsonGenerator.writeObjectField("bookUsers", book.getBooksUsers());
 
             jsonGenerator.writeEndObject();
         }
