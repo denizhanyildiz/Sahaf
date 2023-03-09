@@ -11,7 +11,7 @@ docker build .
 
 * Docker build olduktan sonra
 ```sh
-'docker-compose up' 
+docker-compose up
 ```
 
 kodu yazılır ve sahaf uygulamasıyla mysql conteinerları aynı network ile iletişim kurarak bilgisayarımızda ayağa kalkmış olur.
