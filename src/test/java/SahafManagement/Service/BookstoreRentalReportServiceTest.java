@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -27,6 +28,7 @@ public class BookstoreRentalReportServiceTest {
     private BookstoreRentalReportService bookstoreRentalReportService;
 
     @Test
+    @WithMockUser(username="admin",roles={"ROLE_ADMIN"})
     public void testCountDailyBookRentalsFromBookstores() {
         LocalDate rentalDate = LocalDate.now();
         Book book = new Book();

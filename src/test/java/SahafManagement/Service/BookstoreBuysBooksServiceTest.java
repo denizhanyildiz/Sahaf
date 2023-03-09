@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -32,6 +33,7 @@ public class BookstoreBuysBooksServiceTest {
     private BookstoreBuysBooksService bookstoreBuysBooksService;
 
     @Test
+    @WithMockUser(username="admin",roles={"USER","ADMIN"})
     public void saveBookToBookstore_WhenBookAndBookstoreExists_ShouldSaveBookToBookstore() throws BookstoreNotFoundException, BookNotFoundException {
         Long bookId = 1L;
         Long bookstoreId = 2L;
@@ -53,6 +55,7 @@ public class BookstoreBuysBooksServiceTest {
     }
 
     @Test(expected = BookNotFoundException.class)
+    @WithMockUser(username="admin",roles={"USER","ADMIN"})
     public void saveBookToBookstore_WhenBookDoesNotExist_ShouldThrowBookNotFoundException() throws BookstoreNotFoundException, BookNotFoundException {
         Long bookId = 1L;
         Long bookstoreId = 2L;
@@ -63,6 +66,7 @@ public class BookstoreBuysBooksServiceTest {
 
     }
     @Test(expected = BookstoreNotFoundException.class)
+    @WithMockUser(username="admin",roles={"ROLE_ADMIN"})
     public void saveBookToBookstore_WhenBookstoreDoesNotExist_ShouldThrowBookstoreNotFoundException() throws BookstoreNotFoundException, BookNotFoundException {
         Long bookId = 1L;
         Long bookstoreId = 2L;
