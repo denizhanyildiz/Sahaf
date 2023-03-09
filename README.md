@@ -4,17 +4,20 @@ Sahaf Manager Application
 ## Docker
 Uygulamayı Docker ile başlatmak için bilgisayaranızda docker yüklü olması gerekmektedir;
 
-* Terminale aşağıdaki kodu yazınız.
+* Terminale docker'ı build etmek için lk olarak aşağıdaki kodu yazınız.
 ```sh  
 docker build .
 ```
 
-* Docker build olduktan sonra
+* Docker build tamamlandıktan sonra, containerların ilişkili şekilde ayağa kalkması için aşağıdaki kodu terminale yazarak çalıştırırız.
 ```sh
 docker-compose up
 ```
 
-kodu yazılır ve sahaf uygulamasıyla mysql conteinerları aynı network ile iletişim kurarak bilgisayarımızda ayağa kalkmış olur.
+sahaf uygulamasıyla mysql conteinerları aynı network ile iletişim kurarak bilgisayarımızda ayağa kalkmış olur.
+
+Not: Burada dikkat edilmesi gereken unsur uygulamaların ilişkili olduğu portların kulanılmıyor olması gerekmektedir. 
+(Sahaf Application 8080, mysql 3307)
 
 ## Manuel Test
 
