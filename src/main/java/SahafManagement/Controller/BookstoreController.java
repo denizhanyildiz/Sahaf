@@ -29,9 +29,8 @@ public class BookstoreController {
     @DeleteMapping("/delete/{bookstoreId}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> deleteBookstore(@PathVariable Long bookstoreId) {
-        System.out.println(bookstoreId + " id numaralı sahaf veri tabanından silindi");
         bookstoreService.deleteBookstore(bookstoreId);
-        return ResponseEntity.ok(bookstoreId + " id numaralı sahaf veri tabanından silindi.");
+        return ResponseEntity.ok("Bookstore #"+bookstoreId + " has been deleted from database..");
     }
 
     @PostMapping("/update/{bookstoreId}")

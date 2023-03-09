@@ -57,12 +57,11 @@ public class BookRentalServiceTest {
 
         Book book = new Book();
         book.setBookId(bookId);
-        List<BookRental> rentals = new ArrayList<>();
-        book.setUserBookRental(rentals);
-        List<User> users = new ArrayList<>();
-        book.setBooksUsers(users);
+        List<BookRental> rentalList = new ArrayList<>();
+        book.setUserBookRental(rentalList);
+        List<User> userList = new ArrayList<>();
+        book.setBooksUsers(userList);
 
-        // Mock the repository methods
         when(userRepository.findById(userId)).thenReturn(Optional.of(user));
         when(bookstoreRepository.findById(bookstoreId)).thenReturn(Optional.of(bookstore));
         when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
@@ -70,20 +69,15 @@ public class BookRentalServiceTest {
         when(bookRepository.save(any(Book.class))).thenReturn(null);
         when(userRepository.save(any(User.class))).thenReturn(null);
 
-        // When
         bookRentalService.rentBook(userId, bookstoreId, bookId, rentalDate, returnDate);
 
-        // Then
-        // Verify that the book rental was saved to the repository
         verify(bookRentalRepository, times(1)).save(any(BookRental.class));
 
-        // Verify that the book was updated with the new rental
         Assertions.assertEquals(1, book.getUserBookRental().size());
         Assertions.assertEquals(rentalDate, book.getUserBookRental().get(0).getRentalDate());
         Assertions.assertEquals(returnDate, book.getUserBookRental().get(0).getReturnDate());
         Assertions.assertEquals(bookstore, book.getUserBookRental().get(0).getBookstore());
 
-        // Verify that the user was updated with the new rental
         Assertions.assertEquals(1, book.getBooksUsers().size());
         Assertions.assertEquals(user, book.getBooksUsers().get(0));
     }

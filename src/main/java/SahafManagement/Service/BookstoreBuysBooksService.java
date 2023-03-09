@@ -32,20 +32,20 @@ public class BookstoreBuysBooksService {
     public void saveBookToBookstore(Long bookId, Long bookstoreId) throws BookstoreNotFoundException, BookNotFoundException {
         Optional<Book> optionalBook = iBookRepository.findById(bookId);
         if (!optionalBook.isPresent()) {
-            throw new BookNotFoundException(bookId + " idli kitap bulunamadı..");
+            throw new BookNotFoundException("Book #"+bookId + " not found.");
         }
 
         Optional<Bookstore> optionalBookstore = iBookstoreRepository.findById(bookstoreId);
         if (!optionalBookstore.isPresent()) {
-            throw new BookstoreNotFoundException(bookstoreId + " id numaralı sahaf bulunamadı..");
+            throw new BookstoreNotFoundException("Bookstore #"+bookstoreId + " not found.");
         }
 
         Book book = optionalBook.get();
         Bookstore bookstore = optionalBookstore.get();
 
-        List<Bookstore> bookstores = book.getBookBookstores();
-        bookstores.add(bookstore);
-        book.setBookBookstores(bookstores);
+        List<Bookstore> bookstoreList = book.getBookBookstores();
+        bookstoreList.add(bookstore);
+        book.setBookBookstores(bookstoreList);
         iBookRepository.save(book);
     }
 }

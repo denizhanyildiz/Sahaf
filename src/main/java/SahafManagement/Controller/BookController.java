@@ -43,7 +43,7 @@ public class BookController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
-        return ResponseEntity.ok(id + " id numaralı kitap veri tabanından silindi..");
+        return ResponseEntity.ok("Book #"+id + "has been deleted from database..");
     }
 
     @GetMapping("/get")

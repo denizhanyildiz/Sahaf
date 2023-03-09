@@ -12,6 +12,15 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
+/*
+@RunWith(MockitoJUnitRunner.class) ile jUnnit testlerini çalıştırmak için sahte çerçeve olarak Mockito'yu kullanmasını söyler.
+@Moeck ile repositorynin sahte bir nesnesi oluşturulur.
+@InjectMocks ile sahte  repositoryi test edilecek olan BookService'e inject eder.
+Yeni bir book nesnesi oluşur, sahte repository save() metodunu, kendisine verilen book'u döndürmesi gerekir.
+Daha sonra servis nesnesinin saveBook() metona daha önce oluşturulmuş olan book örneği verilir.
+Son adımda, repository'e gidilen book ile servisten dönen book kıyaslanır.
+ */
+
 @RunWith(MockitoJUnitRunner.class)
 public class BookServiceTest {
 
@@ -23,20 +32,15 @@ public class BookServiceTest {
 
     @Test
     public void testSaveBook() {
-        // Create a book instance to save
         Book book = new Book();
         book.setBookName("Test Book");
 
-        // Mock the book repository's save() method to return the same book instance
         when(bookRepository.save(book)).thenReturn(book);
 
-        // Call the saveBook() method on the book service
         Book savedBook = bookService.saveBook(book);
 
-        // Verify that the save() method was called on the book repository with the same book instance
         Mockito.verify(bookRepository).save(book);
 
-        // Verify that the saved book instance is the same as the original book instance
         assertEquals(book, savedBook);
     }
 }

@@ -28,6 +28,6 @@ public class BookstoreRentalReportController {
     public ResponseEntity<?> countDailyBookRentalsFromBookstores(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate rentalDate) {
         List<BookRental> dailyRentals = bookstoreRentalReportService.countDailyBookRentalsFromBookstores(rentalDate);
         int rentalCount = dailyRentals.size();
-        return ResponseEntity.ok(rentalDate.toString() + " tarihinde kiraya verilen kitap sayısı " + rentalCount);
+        return ResponseEntity.ok("The total number of books ranted on "+rentalDate.toString() + " is " + rentalCount);
     }
 }

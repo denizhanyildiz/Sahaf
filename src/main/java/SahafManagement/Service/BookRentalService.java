@@ -45,20 +45,20 @@ Daha sonra kitap ilgili kullanıcı ile ilişkili listeye eklenir ve daha sonra 
                 throws BookNotFoundException, UserNotFoundException, BookstoreNotFoundException, BookNotAvailableException {
 
             User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new UserNotFoundException( userId +" id li kullanıcı bulunamadı.."));
+                    .orElseThrow(() -> new UserNotFoundException("User #"+ userId +" not found."));
 
             Bookstore bookstore = bookstoreRepository.findById(bookstoreId)
-                    .orElseThrow(() -> new BookstoreNotFoundException(bookstoreId + " id li sahaf bulunamadı.."));
+                    .orElseThrow(() -> new BookstoreNotFoundException("Bookstore #"+bookstoreId + " not found."));
 
             Book book = bookRepository.findById(bookId)
-                    .orElseThrow(() -> new BookNotFoundException(bookId + " id li kitap bulunamadı"));
+                    .orElseThrow(() -> new BookNotFoundException("Book #"+bookId + " not found"));
 
             List<BookRental> rentals = book.getUserBookRental().stream().filter(bookRental ->
                     bookRental.getBookstore().getBookstoreId().equals(bookstore.getBookstoreId())).collect(Collectors.toList());
             for (BookRental rental : rentals) {
                 if (rental.getRentalDate().isBefore(returnDate) && rental.getReturnDate().isAfter(rentalDate)) {
-                    throw new BookNotAvailableException(rental.getRentalDate() + " - " + rental.getReturnDate() +
-                            " tarihler arasında"+ bookstore.getBookstoreName() + " adlı sahaftaki " + "kitap farklı kullanıcıya kiralanmıştır.");
+                    throw new BookNotAvailableException("Between "+rental.getRentalDate() + " - " + rental.getReturnDate() +
+                            " the book #"+book.getBookId()+" in the bookstore #" + bookstore.getBookstoreName() + " rented by another user.");
                 }
             }
 

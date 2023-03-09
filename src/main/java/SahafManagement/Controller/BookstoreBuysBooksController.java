@@ -25,11 +25,11 @@ public class BookstoreBuysBooksController {
     public ResponseEntity<String> saveBookToBookstore(@PathVariable Long bookId, @PathVariable Long bookstoreId) {
         try {
             bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
-            return ResponseEntity.ok( bookstoreId + " id numaralı sahaf " + bookId +" id numaralı kitabı satınaldı.");
+            return ResponseEntity.ok( "Book store #"+bookstoreId + "bought book #" + bookId);
         } catch (BookstoreNotFoundException | BookNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Sahaf kitabı satınalamadı..");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("The Bookstore couldn't buy the book..");
         }
     }
 }

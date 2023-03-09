@@ -31,7 +31,7 @@ public class BookstoreService {
     }
 
     public Bookstore updateBookstore(Long bookstoreId, Bookstore bookstore) {
-        Bookstore bookstore1 = iBookstoreRepository.findById(bookstoreId).orElseThrow(() -> new RuntimeException("Kitapçı bulunamadı"));
+        Bookstore bookstore1 = iBookstoreRepository.findById(bookstoreId).orElseThrow(() -> new RuntimeException("Bookstore not found."));
         Optional<Bookstore> optionalBookstore = iBookstoreRepository.findById(bookstoreId);
         if (optionalBookstore.isPresent()) {
             Bookstore existingBookstore = optionalBookstore.get();
@@ -40,7 +40,7 @@ public class BookstoreService {
             existingBookstore.setBookstoreBooks(bookstore.getBookstoreBooks());
             return iBookstoreRepository.save(existingBookstore);
         } else {
-            throw new EntityNotFoundException(bookstoreId + " id numaralı bir sahaf bulunamadı.");
+            throw new EntityNotFoundException("Bookstore #" + bookstoreId + " not found.");
         }
     }
 

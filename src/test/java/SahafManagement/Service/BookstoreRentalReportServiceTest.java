@@ -28,7 +28,6 @@ public class BookstoreRentalReportServiceTest {
 
     @Test
     public void testCountDailyBookRentalsFromBookstores() {
-        // Set up some test data
         LocalDate rentalDate = LocalDate.now();
         Book book = new Book();
         Bookstore bookstore = new Bookstore();
@@ -36,13 +35,10 @@ public class BookstoreRentalReportServiceTest {
         BookRental rental = new BookRental(1L, rentalDate, null, book, bookstore);
         List<BookRental> rentalList = Arrays.asList(rental);
 
-        // Set up mock repository to return test data
         when(iBookRentalRepository.findBookRentalsByRentalDate(rentalDate)).thenReturn(rentalList);
 
-        // Call the method being tested
         List<BookRental> dailyRentalList = bookstoreRentalReportService.countDailyBookRentalsFromBookstores(rentalDate);
 
-        // Verify the results
         assertEquals(1, dailyRentalList.size());
         assertEquals(rental, dailyRentalList.get(0));
     }

@@ -27,7 +27,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
-        return ResponseEntity.ok(id +" id numaralı kullanıcı veri tabanından silindi..");
+        return ResponseEntity.ok("User #"+id +" has been deleted from database..");
     }
 
     @PutMapping("/update/{id}")

@@ -33,7 +33,6 @@ public class BookstoreBuysBooksServiceTest {
 
     @Test
     public void saveBookToBookstore_WhenBookAndBookstoreExists_ShouldSaveBookToBookstore() throws BookstoreNotFoundException, BookNotFoundException {
-        // Arrange
         Long bookId = 1L;
         Long bookstoreId = 2L;
         Book book = new Book(bookId, "Test Book", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
@@ -43,10 +42,8 @@ public class BookstoreBuysBooksServiceTest {
         when(iBookstoreRepository.findById(bookstoreId)).thenReturn(Optional.of(bookstore));
         when(iBookRepository.save(any(Book.class))).thenReturn(book);
 
-        // Act
         bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
 
-        // Assert
         Mockito.verify(iBookRepository, times(1)).findById(bookId);
         Mockito.verify(iBookstoreRepository, times(1)).findById(bookstoreId);
         Mockito.verify(iBookRepository, times(1)).save(book);
@@ -57,21 +54,16 @@ public class BookstoreBuysBooksServiceTest {
 
     @Test(expected = BookNotFoundException.class)
     public void saveBookToBookstore_WhenBookDoesNotExist_ShouldThrowBookNotFoundException() throws BookstoreNotFoundException, BookNotFoundException {
-        // Arrange
         Long bookId = 1L;
         Long bookstoreId = 2L;
 
         when(iBookRepository.findById(bookId)).thenReturn(Optional.empty());
 
-        // Act
         bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
 
-        // Assert
-        // Expected BookNotFoundException to be thrown
     }
     @Test(expected = BookstoreNotFoundException.class)
     public void saveBookToBookstore_WhenBookstoreDoesNotExist_ShouldThrowBookstoreNotFoundException() throws BookstoreNotFoundException, BookNotFoundException {
-        // Arrange
         Long bookId = 1L;
         Long bookstoreId = 2L;
         Book book = new Book(bookId, "Test Book", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
@@ -79,11 +71,8 @@ public class BookstoreBuysBooksServiceTest {
         when(iBookRepository.findById(bookId)).thenReturn(Optional.of(book));
         when(iBookstoreRepository.findById(bookstoreId)).thenReturn(Optional.empty());
 
-        // Act
         bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
 
-        // Assert
-        // Expected BookstoreNotFoundException to be thrown
     }
 
 }

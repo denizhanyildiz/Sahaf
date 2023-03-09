@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public User updateUser(Long id, User updatedUser) {
-        User user = iUserRepository.findById(id).orElseThrow(() -> new RuntimeException("Kullanıcı bulunamadı"));
+        User user = iUserRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found."));
         user.setUserName(updatedUser.getUserName());
         user.setUserPassword(updatedUser.getUserPassword());
         user.setUsersBook(updatedUser.getUsersBook());

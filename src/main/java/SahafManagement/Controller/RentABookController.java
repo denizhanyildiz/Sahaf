@@ -32,7 +32,7 @@ public class RentABookController {
                                            @RequestParam LocalDate returnDate) {
         try {
             bookRentalService.rentBook(userId, bookstoreId, bookId, rentalDate, returnDate);
-            return ResponseEntity.ok(userId + " id li kullanıcı, " + bookstoreId + " id numaralı sahaftan, " + bookId +" id numaralı kitabı, " + rentalDate + " - " + returnDate + " tarihleri arasında kiralamıştır.");
+            return ResponseEntity.ok("User #" + userId + " rented book number  #" + bookId + " from bookstore between " + rentalDate + " - " + returnDate);
         } catch (BookstoreNotFoundException | UserNotFoundException | BookNotFoundException | BookNotAvailableException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

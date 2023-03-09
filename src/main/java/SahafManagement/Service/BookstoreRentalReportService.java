@@ -27,15 +27,15 @@ public class BookstoreRentalReportService {
     }
 
     public List<BookRental> countDailyBookRentalsFromBookstores(LocalDate rentalDate) {
-        List<BookRental> dailyRentals = new ArrayList<>();
-        List<BookRental> allRentals = iBookRentalRepository.findBookRentalsByRentalDate(rentalDate);
-        for (BookRental rental : allRentals) {
+        List<BookRental> dailyRentalList = new ArrayList<>();
+        List<BookRental> allRentalList = iBookRentalRepository.findBookRentalsByRentalDate(rentalDate);
+        for (BookRental rental : allRentalList) {
             Book book = rental.getBook();
             List<Bookstore> bookstores = book.getBookBookstores();
             if (bookstores != null && !bookstores.isEmpty()) {
-                dailyRentals.add(rental);
+                dailyRentalList.add(rental);
             }
         }
-        return dailyRentals;
+        return dailyRentalList;
     }
 }

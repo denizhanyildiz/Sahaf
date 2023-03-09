@@ -31,7 +31,7 @@ public class BookService {
 
     public Book updateBook(Long id, Book updatedBook) {
         Book book = iBookRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(id + " id numaralı kitap bulunamadı.."));
+                .orElseThrow(() -> new EntityNotFoundException("Book #" + id + " not found."));
 
         book.setBookName(updatedBook.getBookName());
         book.setBooksUsers(updatedBook.getBooksUsers());
