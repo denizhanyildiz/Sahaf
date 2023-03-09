@@ -50,7 +50,7 @@ KEYS: userId, bookstoreId, bookId, rentalDate, returnDate
 
 VALUE: 1, 1, 1, 2023-03-07, 2023-03-14
 
-##NOTLAR
+## NOTLAR
 Not1: Kitap başka bir kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir. 
 
 Not2: Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır.
