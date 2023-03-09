@@ -1,25 +1,26 @@
 # Sahaf
 Sahaf Manager Application
 
+## Docker
 Uygulamayı Docker ile başlatmak için bilgisayaranızda docker yüklü olması gerekmektedir;
 
-*Terminale aşağıdaki kodu yazınız.
+1-Terminale aşağıdaki kodu yazınız.
   
 'docker build .' 
 
-*Docker build olduktan sonra
+2-Docker build olduktan sonra
   
 'docker-compose up' 
 
 kodu yazılır ve sahaf uygulamasıyla mysql conteinerları aynı network ile iletişim kurarak bilgisayarımızda ayağa kalkmış olur.
 
+## Manuel Test
+
 Uygulama /Sahaf dosya yolunun altında bulunan Postman Collection dosyasını Postman'e import ederek test edebilirsiniz.
 
-Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır.
+Uygulamayı manuel olarak Postman ile düzgün test edilebilmesi için aşağıdaki adımların sırayla yapılması gerekmektedir.
 
-Uygulamayı manuel olarak po düzgün test edilebilmesi için aşağıdaki adımların sırayla yapılması gerekmektedir.
-
-Bu API ile sisteme ilk başta kullanıcı tanımlanmalıdır, zira BasicAuth olmayan tek API dir ve öteki APIlern kullanılması için kullanıcıya ROLE_ADMIN rolü tanımlanmaldır.
+/user/save APIsi ile sisteme ilk başta kullanıcı tanımlanmalıdır, zira /user/save BasicAuth olmayan tek API dir ve öteki APIlern kullanılması için kullanıcıya ROLE_ADMIN rolü tanımlanmaldır.
 
 1. İlk olarak veri tabanına kullanıcı kaydedilir
 
@@ -47,8 +48,12 @@ KEYS: userId, bookstoreId, bookId, rentalDate, returnDate
 
 VALUE: 1, 1, 1, 2023-03-07, 2023-03-14
 
-Not: Kitap başka bir kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir. 
-  
+##NOTLAR
+Not1: Kitap başka bir kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir. 
+
+Not2: Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır.
+
+Not3: Yapılan her request ve responslar veri tabanında log tablosunda görülebilir ve bu işlemde AOP kullanılmıştır.
   
   
   
