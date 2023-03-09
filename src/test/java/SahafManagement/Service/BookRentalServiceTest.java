@@ -23,7 +23,6 @@ import java.util.Optional;
 
 public class BookRentalServiceTest {
 
-
     @Mock
     private IBookRentalRepository bookRentalRepository;
     @Mock
