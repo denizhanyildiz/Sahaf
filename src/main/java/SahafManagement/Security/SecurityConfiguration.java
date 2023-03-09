@@ -40,11 +40,13 @@ public class SecurityConfiguration{
                 .authorizeHttpRequests().requestMatchers(
                         "/bookstorepurchase/**"
                         ,"/book/**"
+                        ,"/bookstorepurchase/**"
                         ,"/bookstore/**"
                         ,"/bookstorereport/**"
                         ,"/bookstorerent/**"
                         ,"/user/delete/**"
-                        ,"/user/update/**")
+                        ,"/user/update/**"
+                        ,"/user/get/**")
                 .authenticated()
                 .and().httpBasic()
                 .and().formLogin().permitAll().and().build();
