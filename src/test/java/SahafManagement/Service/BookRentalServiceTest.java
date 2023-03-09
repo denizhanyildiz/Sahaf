@@ -1,7 +1,5 @@
 package SahafManagement.Service;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import SahafManagement.Entity.Book;
 import SahafManagement.Entity.BookRental;
 import SahafManagement.Entity.Bookstore;

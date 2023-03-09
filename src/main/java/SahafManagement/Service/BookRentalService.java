@@ -12,7 +12,6 @@ import SahafManagement.Repository.IBookRentalRepository;
 import SahafManagement.Repository.IBookRepository;
 import SahafManagement.Repository.IBookstoreRepository;
 import SahafManagement.Repository.IUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

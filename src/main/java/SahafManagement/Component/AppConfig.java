@@ -1,6 +1,5 @@
 package SahafManagement.Component;
 
-import SahafManagement.Component.LogAspect;
 import SahafManagement.Repository.ILogRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,5 @@
 package SahafManagement.Utils;
 
-import SahafManagement.Entity.Book;
 import SahafManagement.Entity.User;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

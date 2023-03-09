@@ -3,8 +3,6 @@ package SahafManagement.Service;
 import SahafManagement.Entity.Book;
 import SahafManagement.Repository.IBookRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

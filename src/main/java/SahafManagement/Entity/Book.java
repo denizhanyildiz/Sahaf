@@ -1,10 +1,6 @@
 package SahafManagement.Entity;
 
 import SahafManagement.Utils.BookRentalSerializer;
-import SahafManagement.Utils.UserSerializer;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
