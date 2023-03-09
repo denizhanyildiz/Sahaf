@@ -19,8 +19,11 @@ getBooks() veri tabanında bulunan kitapları kullanıcıya göndermek için GET
 @RequestMapping("/book")
 public class BookController {
 
-    @Autowired
     private BookService bookService;
+
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @PostMapping
     @RequestMapping("/save")

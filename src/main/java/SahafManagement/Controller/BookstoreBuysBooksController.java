@@ -2,7 +2,7 @@ package SahafManagement.Controller;
 
 import SahafManagement.Exception.BookNotFoundException;
 import SahafManagement.Exception.BookstoreNotFoundException;
-import SahafManagement.Service.AddBookToBookstore;
+import SahafManagement.Service.BookstoreBuysBooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,16 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/bookstorepurchase")
-public class AddBookToBookstoreController {
+public class BookstoreBuysBooksController {
+    private BookstoreBuysBooksService bookstoreBuysBooksService;
 
-    @Autowired
-    private AddBookToBookstore addBookToBookstore;
+    public BookstoreBuysBooksController(BookstoreBuysBooksService bookstoreBuysBooksService) {
+        this.bookstoreBuysBooksService = bookstoreBuysBooksService;
+    }
 
     @PutMapping("/book/{bookId}/add-to-bookstore/{bookstoreId}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> saveBookToBookstore(@PathVariable Long bookId, @PathVariable Long bookstoreId) {
         try {
-            addBookToBookstore.saveBookToBookstore(bookId, bookstoreId);
+            bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
             return ResponseEntity.ok( bookstoreId + " id numaralı sahaf " + bookId +" id numaralı kitabı satınaldı.");
         } catch (BookstoreNotFoundException | BookNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -31,6 +33,5 @@ public class AddBookToBookstoreController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Sahaf kitabı satınalamadı..");
         }
     }
-
 }
 

@@ -18,7 +18,6 @@ getAllBookstores() Veri tabanında bulunan kitapçıları geri döndürür.
 @Service
 public class BookstoreService {
     IBookstoreRepository iBookstoreRepository;
-
     public BookstoreService(IBookstoreRepository iBookstoreRepository) {
         this.iBookstoreRepository = iBookstoreRepository;
     }

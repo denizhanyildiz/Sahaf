@@ -17,9 +17,11 @@ getAllBooks() Veri tabanında bulunan kitapları geri döndürür.
 
 @Service
 public class BookService {
-
-    @Autowired
     private IBookRepository iBookRepository;
+
+    public BookService(IBookRepository iBookRepository) {
+        this.iBookRepository = iBookRepository;
+    }
 
     public Book saveBook(Book book) {
         return iBookRepository.save(book);

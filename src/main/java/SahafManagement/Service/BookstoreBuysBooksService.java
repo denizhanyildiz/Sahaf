@@ -20,13 +20,11 @@ Daha sonra güncellenen bu liste kitabın kitapçılarına yerleştirilir ve kay
  */
 
 @Service
-public class AddBookToBookstore {
+public class BookstoreBuysBooksService {
 
     IBookRepository iBookRepository;
-
     IBookstoreRepository iBookstoreRepository;
-
-    public AddBookToBookstore(IBookRepository bookRepository, IBookstoreRepository iBookstoreRepository) {
+    public BookstoreBuysBooksService(IBookRepository bookRepository, IBookstoreRepository iBookstoreRepository) {
         this.iBookRepository = bookRepository;
         this.iBookstoreRepository = iBookstoreRepository;
     }
@@ -42,7 +40,6 @@ public class AddBookToBookstore {
             throw new BookstoreNotFoundException(bookstoreId + " id numaralı sahaf bulunamadı..");
         }
 
-
         Book book = optionalBook.get();
         Bookstore bookstore = optionalBookstore.get();
 
@@ -51,5 +48,4 @@ public class AddBookToBookstore {
         book.setBookBookstores(bookstores);
         iBookRepository.save(book);
     }
-
 }

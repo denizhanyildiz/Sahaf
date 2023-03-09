@@ -18,10 +18,13 @@ getAllBooks() Veri tabanında bulunan kitapları geri döndürür.
 @Service
 public class UserService {
 
-    @Autowired
     private IUserRepository iUserRepository;
-    @Autowired
     private PasswordEncoder passwordEncoder;
+
+    public UserService(IUserRepository iUserRepository, PasswordEncoder passwordEncoder) {
+        this.iUserRepository = iUserRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public User saveUser(User user) {
         user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));

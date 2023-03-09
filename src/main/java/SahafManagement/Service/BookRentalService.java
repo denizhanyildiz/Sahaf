@@ -30,16 +30,19 @@ Daha sonra kitap ilgili kullanıcı ile ilişkili listeye eklenir ve daha sonra 
 
 @Service
     public class BookRentalService {
-        @Autowired
         private IBookRentalRepository bookRentalRepository;
-        @Autowired
         private IBookRepository bookRepository;
-        @Autowired
         private IUserRepository userRepository;
-        @Autowired
         private IBookstoreRepository bookstoreRepository;
 
-        public void rentBook(Long userId, Long bookstoreId, Long bookId, LocalDate rentalDate, LocalDate returnDate)
+    public BookRentalService(IBookRentalRepository bookRentalRepository, IBookRepository bookRepository, IUserRepository userRepository, IBookstoreRepository bookstoreRepository) {
+        this.bookRentalRepository = bookRentalRepository;
+        this.bookRepository = bookRepository;
+        this.userRepository = userRepository;
+        this.bookstoreRepository = bookstoreRepository;
+    }
+
+    public void rentBook(Long userId, Long bookstoreId, Long bookId, LocalDate rentalDate, LocalDate returnDate)
                 throws BookNotFoundException, UserNotFoundException, BookstoreNotFoundException, BookNotAvailableException {
             //Kullanıcıyı bul
             User user = userRepository.findById(userId)
@@ -52,7 +55,6 @@ Daha sonra kitap ilgili kullanıcı ile ilişkili listeye eklenir ve daha sonra 
             //Kitabı bul
             Book book = bookRepository.findById(bookId)
                     .orElseThrow(() -> new BookNotFoundException(bookId + " id li kitap bulunamadı"));
-
 
             //Kitapların, kiralanabilir olduğunu kontrol et
             List<BookRental> rentals = book.getUserBookRental().stream().filter(bookRental ->
@@ -78,7 +80,6 @@ Daha sonra kitap ilgili kullanıcı ile ilişkili listeye eklenir ve daha sonra 
             List<User> userList = book.getBooksUsers();
             userList.add(user);
             book.setBooksUsers(userList);
-
 
             // Değişiklikleri veri tabanına kaydet
             bookRentalRepository.save(rental);
