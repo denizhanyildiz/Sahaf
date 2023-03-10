@@ -471,7 +471,7 @@
 			"response": []
 		},
 		{
-			"name": "Save Book To Bookstore",
+			"name": "Bookstore Buy Book",
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -584,7 +584,7 @@
 			"response": []
 		},
 		{
-			"name": "Sahafların Gün Bazında Kiraya Verdiği Kitap raporu",
+			"name": "Bookstore Rent Report",
 			"request": {
 				"auth": {
 					"type": "basic",

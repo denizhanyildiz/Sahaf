@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/bookstorereport")
 public class BookstoreRentalReportController {
-
     private BookstoreRentalReportService bookstoreRentalReportService;
 
     public BookstoreRentalReportController(BookstoreRentalReportService bookstoreRentalReportService) {
