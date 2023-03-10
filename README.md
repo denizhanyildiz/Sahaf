@@ -58,7 +58,7 @@ Not1: Kitap başka bir kitapçıda kiralanmışsa başka bir kullanıcı tarafı
 
 Not2: Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır.
 
-Not3: Yapılan her request ve responslar veri tabanında log tablosunda görülebilir ve bu işlemde AOP kullanılmıştır.
+Not3: Sisteme gelen her request ve sistemin döndüğü her respons veri tabanında log tablosunda görüntülenebilir, bu işlemde AOP kullanılmıştır.
   
   
   
