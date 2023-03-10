@@ -45,7 +45,6 @@ public class BookRentalServiceTest {
     @Test
     @WithMockUser(username="admin",roles={"ROLE_ADMIN"})
     public void testRentBook() throws Exception {
-        // Given
         Long userId = 1L;
         Long bookstoreId = 2L;
         Long bookId = 3L;
