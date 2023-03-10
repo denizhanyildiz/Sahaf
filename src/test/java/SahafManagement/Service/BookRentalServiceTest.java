@@ -15,7 +15,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.mockito.Mockito.*;
 
@@ -44,7 +43,6 @@ public class BookRentalServiceTest {
     }
 
     @Test
-    @WithMockUser(username="admin",roles={"ROLE_ADMIN"})
     public void testRentBook() throws Exception {
         Long userId = 1L;
         Long bookstoreId = 2L;

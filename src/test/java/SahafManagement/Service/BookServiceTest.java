@@ -8,7 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -32,7 +31,6 @@ public class BookServiceTest {
     private BookService bookService;
 
     @Test
-    @WithMockUser(username="admin",roles={"ROLE_ADMIN"})
     public void testSaveBook() {
         Book book = new Book();
         book.setBookName("Test Book");
