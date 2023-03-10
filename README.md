@@ -29,17 +29,45 @@ Uygulamayı manuel olarak Postman ile düzgün test edilebilmesi için aşağıd
 
 http://localhost:8080/user/save
 
+Örnek Body:
+```sh
+{
+    "userName":"Denizhan",
+    "userPassword":"12345",
+    "userRole":"ROLE_ADMIN"
+}
+```
+
 2.Bu API ile sisteme bir adet kitap kaydedilmelidir ve POST türünde çalıştırılmalıdır. 
 
 http://localhost:8080/book/save
+
+Örnek Body:
+```sh
+{
+    "bookName":"Ali Okulda"
+}
+```
 
 3.Bu API ile sisteme kitapçı kaydedilmelidir ve POST türünde çalıştırılmalıdır. 
 
 http://localhost:8080/bookstore/save
 
+Örnek Body:
+```sh
+{
+    "bookstoreName":"DenizKitapEvi",
+    "bookstoreAddress":"Istanbul"
+}
+```
 4.Kaydedilen kitabın, kitapçıya tanımlanması gerekmektdir. Path variable olarak sırasıyla book id ve bookstore id verilmelidir ve PUT türünde çalıştırılmalıdır. 
 
 http://localhost:8080/bookstorepurchase/book/{bookId}/add-to-bookstore/{booksotreId}
+
+Örnek URL:
+```sh
+http://localhost:8080/bookstorepurchase/book/1/add-to-bookstore/1
+```
 
 5.Ilgili kitapçıya kitap tanımlandıktan sonra kullanıcılar ilgili kitaçıdan kitabı kiralamak için aşağıdaki API kullanılır. Bu API headerına Param key value bilgileri yazılmalıdır ve POST türünde çalıştırılmalıdır. 
 
@@ -47,16 +75,25 @@ http://localhost:8080/bookstorerent/rent
 
 Query Param API Sırasıyla Key ve örnek Valuelar,
 
+```sh
 KEYS: userId, bookstoreId, bookId, rentalDate, returnDate
-
+```
+```sh
 VALUE: 1, 1, 1, 2023-03-07, 2023-03-14
+```
 
-6.Kitapçıların günlük kiraladığı total kitap raporunu görebilmek için aşağıdaki apiyi GET türünde çalıştırınız. 
+6.Kitapçıların günlük kiraladığı total kitap raporunu görebilmek için aşağıdaki apiyi ullanmamız gerekmektedir. Bu API headerına Param key value bilgileri yazılmalıdır ve GET türünde çalıştırılmalıdır.
 
 http://localhost:8080/bookstorereport
 
+```sh
+KEY: rentalDate
+```
+```sh
+VALUE: 2023-03-07
+```
 ## NOTLAR
-Not1: Kitap başka bir kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir. 
+Not1: Kitap kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir. 
 
 Not2: Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır.
 
