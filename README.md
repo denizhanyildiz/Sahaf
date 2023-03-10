@@ -16,7 +16,7 @@ docker-compose up
 ```
 
 Sahaf uygulamasıyla mysql conteinerları aynı network ile iletişim kurarak bilgisayarımızda ayağa kalkmış olur. Postman veya tarayıcıdan ilgili API ler test edilebilir.
-Docker Desktop uygulamasında ayağakalkan Container leri görebiliriz.
+Docker Desktop uygulamasında ayağakalkan Container lari görebiliriz.
 
 Not: Burada dikkat edilmesi gereken unsur uygulamaların ilişkili olduğu portların kulanılmıyor olması gerekmektedir. 
 (Sahaf Application 8080, mysql 3307)
@@ -100,10 +100,3 @@ Not1: Kitap kitapçıda kiralanmışsa başka bir kullanıcı tarafından kirala
 Not2: Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır.
 
 Not3: Sisteme gelen her request ve sistemin döndüğü her respons veri tabanında log tablosunda görüntülenebilir, bu işlemde AOP kullanılmıştır.
-  
-  
-  
-  
-  
-  
-  
