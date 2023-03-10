@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.test.context.support.WithMockUser;
 
@@ -73,7 +74,7 @@ public class BookRentalServiceTest {
 
         bookRentalService.rentBook(userId, bookstoreId, bookId, rentalDate, returnDate);
 
-        verify(bookRentalRepository, times(1)).save(any(BookRental.class));
+        Mockito.verify(bookRentalRepository, times(1)).save(any(BookRental.class));
 
         Assertions.assertEquals(1, book.getUserBookRental().size());
         Assertions.assertEquals(rentalDate, book.getUserBookRental().get(0).getRentalDate());
