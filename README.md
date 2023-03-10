@@ -56,7 +56,7 @@ VALUE: 1, 1, 1, 2023-03-07, 2023-03-14
 http://localhost:8080/bookstorereport
 
 ## NOTLAR
-Not1: Kitap başka bir kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir. 
+Not1: Kitap kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir. 
 
 Not2: Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır.
 
