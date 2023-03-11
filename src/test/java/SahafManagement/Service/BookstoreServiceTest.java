@@ -110,13 +110,9 @@ class BookstoreServiceTest {
     @Test
     void getAllBookstores() {
         List<Bookstore> bookstoreList = Arrays.asList(new Bookstore(), new Bookstore(),new Bookstore());
-
         when(iBookstoreRepository.findAll()).thenReturn(bookstoreList);
-
         List<Bookstore> result = bookstoreService.getAllBookstores();
-
         assertEquals(bookstoreList, result);
-
         verify(iBookstoreRepository).findAll();
     }
 }
