@@ -52,7 +52,7 @@ public class BookRentalService {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new BookNotFoundException("Book #" + bookId + " not found"));
 
-        boolean bookAvailable = bookstore.getBookstoreBooks().stream().anyMatch(b -> b.getBookId().equals(bookId));
+        boolean bookAvailable = bookstore.getBookstoreBooks().stream().anyMatch(booksId -> booksId.getBookId().equals(bookId));
         if (!bookAvailable) {
             throw new BookNotAvailableException("Book #" + bookId + " is not available in bookstore #" + bookstoreId);
         }
