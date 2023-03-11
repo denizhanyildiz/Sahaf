@@ -18,6 +18,7 @@ getAllBookstores() Veri tabanında bulunan kitapçıları geri döndürür.
 @Service
 public class BookstoreService {
     IBookstoreRepository iBookstoreRepository;
+
     public BookstoreService(IBookstoreRepository iBookstoreRepository) {
         this.iBookstoreRepository = iBookstoreRepository;
     }
@@ -31,17 +32,12 @@ public class BookstoreService {
     }
 
     public Bookstore updateBookstore(Long bookstoreId, Bookstore bookstore) {
-        Bookstore bookstore1 = iBookstoreRepository.findById(bookstoreId).orElseThrow(() -> new RuntimeException("Bookstore not found."));
-        Optional<Bookstore> optionalBookstore = iBookstoreRepository.findById(bookstoreId);
-        if (optionalBookstore.isPresent()) {
-            Bookstore existingBookstore = optionalBookstore.get();
-            existingBookstore.setBookstoreName(bookstore.getBookstoreName());
-            existingBookstore.setBookstoreAddress(bookstore.getBookstoreAddress());
-            existingBookstore.setBookstoreBooks(bookstore.getBookstoreBooks());
-            return iBookstoreRepository.save(existingBookstore);
-        } else {
-            throw new EntityNotFoundException("Bookstore #" + bookstoreId + " not found.");
-        }
+        Bookstore bookstore1 = iBookstoreRepository.findById(bookstoreId)
+                .orElseThrow(() -> new RuntimeException("#" + bookstoreId + "Bookstore not found."));
+        bookstore1.setBookstoreName(bookstore.getBookstoreName());
+        bookstore1.setBookstoreBooks(bookstore.getBookstoreBooks());
+        bookstore1.setBookstoreAddress(bookstore.getBookstoreAddress());
+        return iBookstoreRepository.save(bookstore1);
     }
 
     public List<Bookstore> getAllBookstores() {

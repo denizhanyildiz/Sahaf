@@ -14,7 +14,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,15 +50,15 @@ public class UserServiceTest {
 
     @Test
     public void testDeleteUser() {
-        Long id = 1L;
-        doNothing().when(iUserRepository).deleteById(id);
-        userService.deleteUser(id);
-        verify(iUserRepository).deleteById(id);
+        Long userId = 1L;
+        doNothing().when(iUserRepository).deleteById(userId);
+        userService.deleteUser(userId);
+        verify(iUserRepository).deleteById(userId);
     }
 
     @Test
     public void testUpdateUser() {
-        Long bookId = 1L;
+        Long userId = 1L;
         Book book1 = new Book();
         book1.setBookName("Book");
         book1.setBookBookstores(new ArrayList<>());
@@ -80,7 +79,7 @@ public class UserServiceTest {
         user.setUserRole("ROLE_ADMIN");
         user.setUsersBook(Arrays.asList(book1, book2));
 
-        when(iUserRepository.findById(bookId)).thenReturn(Optional.of(user));
+        when(iUserRepository.findById(userId)).thenReturn(Optional.of(user));
         when(iUserRepository.save(user)).thenReturn(user);
 
         User updatedUser = new User();
@@ -99,12 +98,12 @@ public class UserServiceTest {
         book4.setBooksUsers(new ArrayList<>());
         updatedUser.setUsersBook(Arrays.asList(book3, book4));
 
-        User result = userService.updateUser(bookId, updatedUser);
+        User result = userService.updateUser(userId, updatedUser);
 
         assertEquals(updatedUser.getUserName(), result.getUserName());
         assertEquals(updatedUser.getUsersBook(), result.getUsersBook());
 
-        Mockito.verify(iUserRepository).findById(bookId);
+        Mockito.verify(iUserRepository).findById(userId);
         Mockito.verify(iUserRepository).save(argThat(argument -> argument.getUserName().equals("User 2")
                 && argument.getUsersBook().equals(Arrays.asList(book3, book4))));
 
