@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /*
 rentBook metodunda userId, bookstoreId, bookId, rentalDate, returnDate parametre olarak alınır.
@@ -27,13 +26,13 @@ Daha sonra kitap ilgili kullanıcı ile ilişkili listeye eklenir ve daha sonra 
  */
 
 @Service
-public class BookRentalService {
+public class RentABookService {
     private IBookRentalRepository bookRentalRepository;
     private IBookRepository bookRepository;
     private IUserRepository userRepository;
     private IBookstoreRepository bookstoreRepository;
 
-    public BookRentalService(IBookRentalRepository bookRentalRepository, IBookRepository bookRepository, IUserRepository userRepository, IBookstoreRepository bookstoreRepository) {
+    public RentABookService(IBookRentalRepository bookRentalRepository, IBookRepository bookRepository, IUserRepository userRepository, IBookstoreRepository bookstoreRepository) {
         this.bookRentalRepository = bookRentalRepository;
         this.bookRepository = bookRepository;
         this.userRepository = userRepository;

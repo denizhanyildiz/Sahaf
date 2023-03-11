@@ -4,7 +4,7 @@ import SahafManagement.Exception.BookNotAvailableException;
 import SahafManagement.Exception.BookNotFoundException;
 import SahafManagement.Exception.BookstoreNotFoundException;
 import SahafManagement.Exception.UserNotFoundException;
-import SahafManagement.Service.BookRentalService;
+import SahafManagement.Service.RentABookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,10 +19,10 @@ import java.time.LocalDate;
 @RequestMapping("/bookstorerent")
 public class RentABookController {
 
-    private BookRentalService bookRentalService;
+    private RentABookService rentABookService;
 
-    public RentABookController(BookRentalService bookRentalService) {
-        this.bookRentalService = bookRentalService;
+    public RentABookController(RentABookService rentABookService) {
+        this.rentABookService = rentABookService;
     }
 
     @PostMapping("/rent")
@@ -31,8 +31,8 @@ public class RentABookController {
                                            @RequestParam Long bookId, @RequestParam LocalDate rentalDate,
                                            @RequestParam LocalDate returnDate) {
         try {
-            bookRentalService.rentBook(userId, bookstoreId, bookId, rentalDate, returnDate);
-            return ResponseEntity.ok("User #" + userId + " rented book number  #" + bookId + " from bookstore #"+ bookstoreId + "between " + rentalDate + " - " + returnDate);
+            rentABookService.rentBook(userId, bookstoreId, bookId, rentalDate, returnDate);
+            return ResponseEntity.ok("User #" + userId + " rented book number  #" + bookId + " from bookstore #"+ bookstoreId + " between " + rentalDate + " - " + returnDate);
         } catch (BookstoreNotFoundException | UserNotFoundException | BookNotFoundException | BookNotAvailableException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

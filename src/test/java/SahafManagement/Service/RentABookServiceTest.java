@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BookRentalServiceTest {
+public class RentABookServiceTest {
     @Mock
     private IBookRentalRepository bookRentalRepository;
 
@@ -36,7 +36,7 @@ public class BookRentalServiceTest {
     private IBookstoreRepository bookstoreRepository;
 
     @InjectMocks
-    private BookRentalService bookRentalService;
+    private RentABookService rentABookService;
 
     @BeforeEach
     public void setup() {
@@ -76,7 +76,7 @@ public class BookRentalServiceTest {
         when(bookRepository.save(book)).thenReturn(book);
         when(bookRentalRepository.save(any(BookRental.class))).thenReturn(new BookRental());
 
-        bookRentalService.rentBook(userId, bookstoreId, bookId, rentalDate, returnDate);
+        rentABookService.rentBook(userId, bookstoreId, bookId, rentalDate, returnDate);
 
         assertTrue(book.getBooksUsers().contains(user));
         assertTrue(book.getUserBookRental().size() == 1);

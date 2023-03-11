@@ -9,11 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @EnableAutoConfiguration
 @EnableWebSecurity
 public class SahafApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(SahafApplication.class, args);
-
-
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(SahafApplication.class, args);
+    }
 }
