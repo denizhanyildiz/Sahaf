@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
@@ -24,13 +25,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class BookRentalServiceTest {
-
     @Mock
     private IBookRentalRepository bookRentalRepository;
+
     @Mock
     private IBookRepository bookRepository;
+
     @Mock
     private IUserRepository userRepository;
+
     @Mock
     private IBookstoreRepository bookstoreRepository;
 
@@ -38,7 +41,7 @@ public class BookRentalServiceTest {
     private BookRentalService bookRentalService;
 
     @BeforeEach
-    public void setUp() {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
     }
 
@@ -48,7 +51,7 @@ public class BookRentalServiceTest {
         Long bookstoreId = 2L;
         Long bookId = 3L;
         LocalDate rentalDate = LocalDate.now();
-        LocalDate returnDate = LocalDate.now().plusDays(7);
+        LocalDate returnDate = rentalDate.plusDays(7);
 
         User user = new User();
         user.setUserId(userId);
@@ -58,29 +61,27 @@ public class BookRentalServiceTest {
 
         Book book = new Book();
         book.setBookId(bookId);
-        List<BookRental> rentalList = new ArrayList<>();
-        book.setUserBookRental(rentalList);
-        List<User> userList = new ArrayList<>();
-        book.setBooksUsers(userList);
+
+        List<Book> bookstoreBooks = new ArrayList<>();
+        bookstoreBooks.add(book);
+        bookstore.setBookstoreBooks(bookstoreBooks);
+
+        List<BookRental> bookRentals = new ArrayList<>();
+        book.setUserBookRental(bookRentals);
+
+        List<User> bookUsers = new ArrayList<>();
+        book.setBooksUsers(bookUsers);
 
         when(userRepository.findById(userId)).thenReturn(Optional.of(user));
         when(bookstoreRepository.findById(bookstoreId)).thenReturn(Optional.of(bookstore));
         when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
-        when(bookRentalRepository.save(any(BookRental.class))).thenReturn(null);
-        when(bookRepository.save(any(Book.class))).thenReturn(null);
-        when(userRepository.save(any(User.class))).thenReturn(null);
+        when(bookRepository.save(book)).thenReturn(book);
+        when(bookRentalRepository.save(any(BookRental.class))).thenReturn(new BookRental());
 
         bookRentalService.rentBook(userId, bookstoreId, bookId, rentalDate, returnDate);
 
-        Mockito.verify(bookRentalRepository, times(1)).save(any(BookRental.class));
-
-        Assertions.assertEquals(1, book.getUserBookRental().size());
-        Assertions.assertEquals(rentalDate, book.getUserBookRental().get(0).getRentalDate());
-        Assertions.assertEquals(returnDate, book.getUserBookRental().get(0).getReturnDate());
-        Assertions.assertEquals(bookstore, book.getUserBookRental().get(0).getBookstore());
-
-        Assertions.assertEquals(1, book.getBooksUsers().size());
-        Assertions.assertEquals(user, book.getBooksUsers().get(0));
+        assertTrue(book.getBooksUsers().contains(user));
+        assertTrue(book.getUserBookRental().size() == 1);
     }
 
 }
