@@ -46,8 +46,8 @@ public class RentABookServiceTest {
     @Test
     public void testRentBook() throws Exception {
         Long userId = 1L;
-        Long bookstoreId = 2L;
-        Long bookId = 3L;
+        Long bookstoreId = 1L;
+        Long bookId = 1L;
         LocalDate rentalDate = LocalDate.now();
         LocalDate returnDate = rentalDate.plusDays(7);
 

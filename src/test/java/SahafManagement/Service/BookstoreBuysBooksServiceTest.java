@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,7 +36,7 @@ public class BookstoreBuysBooksServiceTest {
     @Test
     public void saveBookToBookstore_WhenBookAndBookstoreExists_ShouldSaveBookToBookstore() throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
         Long bookId = 1L;
-        Long bookstoreId = 2L;
+        Long bookstoreId = 1L;
         Book book = new Book(bookId, "Test Book", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
         Bookstore bookstore = new Bookstore(bookstoreId, "Test Bookstore", "Test Address", new ArrayList<>());
 
@@ -56,24 +57,41 @@ public class BookstoreBuysBooksServiceTest {
     @Test(expected = BookNotFoundException.class)
     public void saveBookToBookstore_WhenBookDoesNotExist_ShouldThrowBookNotFoundException() throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
         Long bookId = 1L;
-        Long bookstoreId = 2L;
+        Long bookstoreId = 1L;
 
         when(iBookRepository.findById(bookId)).thenReturn(Optional.empty());
 
         bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
-
     }
     @Test(expected = BookstoreNotFoundException.class)
     public void saveBookToBookstore_WhenBookstoreDoesNotExist_ShouldThrowBookstoreNotFoundException() throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
         Long bookId = 1L;
-        Long bookstoreId = 2L;
+        Long bookstoreId = 1L;
         Book book = new Book(bookId, "Test Book", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
         when(iBookRepository.findById(bookId)).thenReturn(Optional.of(book));
         when(iBookstoreRepository.findById(bookstoreId)).thenReturn(Optional.empty());
 
         bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
+    }
 
+    @Test(expected = BookAvailableException.class)
+    public void testSaveBookToBookstore_WhenBookIsAlreadyAvailable_ShouldThrowBookAvailableException() throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
+        Long bookId = 1L;
+        Long bookstoreId = 1L;
+        Book book = new Book();
+        book.setBookId(bookId);
+        List<Bookstore> bookstores = new ArrayList<>();
+        Bookstore bookstore = new Bookstore();
+        bookstore.setBookstoreId(bookstoreId);
+        bookstores.add(bookstore);
+        book.setBookBookstores(bookstores);
+
+        Mockito.when(iBookRepository.findById(bookId)).thenReturn(Optional.of(book));
+        Mockito.when(iBookstoreRepository.findById(bookstoreId)).thenReturn(Optional.of(bookstore));
+
+
+        bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
     }
 
 }
