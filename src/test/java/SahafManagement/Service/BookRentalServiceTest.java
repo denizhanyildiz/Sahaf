@@ -8,12 +8,10 @@ import SahafManagement.Repository.IBookRentalRepository;
 import SahafManagement.Repository.IBookRepository;
 import SahafManagement.Repository.IBookstoreRepository;
 import SahafManagement.Repository.IUserRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertTrue;
