@@ -57,9 +57,8 @@ public class BookRentalService {
             throw new BookNotAvailableException("Book #" + bookId + " is not available in bookstore #" + bookstoreId);
         }
 
-        List<BookRental> rentals = book.getUserBookRental().stream().filter(bookRental ->
-                bookRental.getBookstore().getBookstoreId().equals(bookstore.getBookstoreId())).collect(Collectors.toList());
-        for (BookRental rental : rentals) {
+        List<BookRental> rentalList = book.getUserBookRental();
+        for (BookRental rental : rentalList) {
             if (rental.getRentalDate().isBefore(returnDate) && rental.getReturnDate().isAfter(rentalDate)) {
                 throw new BookNotAvailableException("Between " + rental.getRentalDate() + " - " + rental.getReturnDate() +
                         " the book #" + book.getBookId() + " in the bookstore #" + bookstore.getBookstoreName() + " rented by another user.");
@@ -72,8 +71,8 @@ public class BookRentalService {
         rental.setReturnDate(returnDate);
         rental.setBookstore(bookstore);
 
-        rentals.add(rental);
-        book.setUserBookRental(rentals);
+        rentalList.add(rental);
+        book.setUserBookRental(rentalList);
 
         List<User> userList = book.getBooksUsers();
         userList.add(user);
