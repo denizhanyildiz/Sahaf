@@ -1,5 +1,6 @@
 package SahafManagement.Controller;
 
+import SahafManagement.Exception.BookAvailableException;
 import SahafManagement.Exception.BookNotFoundException;
 import SahafManagement.Exception.BookstoreNotFoundException;
 import SahafManagement.Service.BookstoreBuysBooksService;
@@ -26,11 +27,10 @@ public class BookstoreBuysBooksController {
         try {
             bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
             return ResponseEntity.ok( "Book store #"+bookstoreId + " bought book #" + bookId);
-        } catch (BookstoreNotFoundException | BookNotFoundException e) {
+        } catch (BookstoreNotFoundException | BookNotFoundException | BookAvailableException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("The Bookstore couldn't buy the book..");
         }
+
     }
 }
 

@@ -2,6 +2,7 @@ package SahafManagement.Service;
 
 import SahafManagement.Entity.Book;
 import SahafManagement.Entity.Bookstore;
+import SahafManagement.Exception.BookAvailableException;
 import SahafManagement.Exception.BookNotFoundException;
 import SahafManagement.Exception.BookstoreNotFoundException;
 import SahafManagement.Repository.IBookRepository;
@@ -32,7 +33,7 @@ public class BookstoreBuysBooksServiceTest {
     private BookstoreBuysBooksService bookstoreBuysBooksService;
 
     @Test
-    public void saveBookToBookstore_WhenBookAndBookstoreExists_ShouldSaveBookToBookstore() throws BookstoreNotFoundException, BookNotFoundException {
+    public void saveBookToBookstore_WhenBookAndBookstoreExists_ShouldSaveBookToBookstore() throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
         Long bookId = 1L;
         Long bookstoreId = 2L;
         Book book = new Book(bookId, "Test Book", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
@@ -53,7 +54,7 @@ public class BookstoreBuysBooksServiceTest {
     }
 
     @Test(expected = BookNotFoundException.class)
-    public void saveBookToBookstore_WhenBookDoesNotExist_ShouldThrowBookNotFoundException() throws BookstoreNotFoundException, BookNotFoundException {
+    public void saveBookToBookstore_WhenBookDoesNotExist_ShouldThrowBookNotFoundException() throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
         Long bookId = 1L;
         Long bookstoreId = 2L;
 
@@ -63,7 +64,7 @@ public class BookstoreBuysBooksServiceTest {
 
     }
     @Test(expected = BookstoreNotFoundException.class)
-    public void saveBookToBookstore_WhenBookstoreDoesNotExist_ShouldThrowBookstoreNotFoundException() throws BookstoreNotFoundException, BookNotFoundException {
+    public void saveBookToBookstore_WhenBookstoreDoesNotExist_ShouldThrowBookstoreNotFoundException() throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
         Long bookId = 1L;
         Long bookstoreId = 2L;
         Book book = new Book(bookId, "Test Book", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());

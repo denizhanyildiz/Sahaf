@@ -2,6 +2,8 @@ package SahafManagement.Service;
 
 import SahafManagement.Entity.Book;
 import SahafManagement.Entity.Bookstore;
+import SahafManagement.Exception.BookAvailableException;
+import SahafManagement.Exception.BookNotAvailableException;
 import SahafManagement.Exception.BookNotFoundException;
 import SahafManagement.Exception.BookstoreNotFoundException;
 import SahafManagement.Repository.IBookRepository;
@@ -29,7 +31,7 @@ public class BookstoreBuysBooksService {
         this.iBookstoreRepository = iBookstoreRepository;
     }
 
-    public void saveBookToBookstore(Long bookId, Long bookstoreId) throws BookstoreNotFoundException, BookNotFoundException {
+    public void saveBookToBookstore(Long bookId, Long bookstoreId) throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
         Optional<Book> optionalBook = iBookRepository.findById(bookId);
         if (!optionalBook.isPresent()) {
             throw new BookNotFoundException("Book #"+bookId + " not found.");
@@ -42,8 +44,12 @@ public class BookstoreBuysBooksService {
 
         Book book = optionalBook.get();
         Bookstore bookstore = optionalBookstore.get();
-
         List<Bookstore> bookstoreList = book.getBookBookstores();
+
+        if(bookstoreList.contains(bookstore)){
+            throw new BookAvailableException("Book #" + bookId + " is already available in Bookstore #" + bookstoreId);
+        }
+
         bookstoreList.add(bookstore);
         book.setBookBookstores(bookstoreList);
         iBookRepository.save(book);
