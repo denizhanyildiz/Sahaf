@@ -32,7 +32,7 @@ public class BookstoreRentalReportService {
         for (BookRental rental : allRentalList) {
             Book book = rental.getBook();
             List<Bookstore> bookstores = book.getBookBookstores();
-            if (bookstores != null && !bookstores.isEmpty()) {
+            if (!bookstores.isEmpty()) {
                 dailyRentalList.add(rental);
             }
         }
