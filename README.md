@@ -1,8 +1,10 @@
 # Sahaf
 Sahaf Manager Application
+* Spring 3.0.4
+* Java 17
 
 ## Docker
-Uygulamayı Docker ile başlatmak için bilgisayarınızda docker yüklü olması gerekmektedir. (Docker)
+Uygulamayı Docker ile başlatmak için bilgisayarınızda docker yüklü olması gerekmektedir.
 Ardından Maven/Sahaf/Lifecycle install çalıştırılarak Sahaf/Target klasörü altında "Sahaf-0.0.1-SNAPSHOT.jar" ve "Sahaf-0.0.1-SNAPSHOT.jar.original" dosyaları yaratılır.
 
 * Kullanılan IDE sisteminin terminalinde docker'ı build etmek için ilk olarak aşağıdaki kodu yazarak çalıştırınız.
@@ -27,7 +29,8 @@ Uygulamada /Sahaf dosya yolunun altında bulunan Postman Collection dosyasını 
 
 Uygulamayı manuel olarak Postman ile düzgün test edilebilmesi için aşağıdaki adımların sırayla yapılması gerekmektedir.
 
-1./user/save APIsi ile Postman den sisteme ilk başta kullanıcı tanımlanmalıdır, zira /user/save BasicAuth olmayan tek API dir ve öteki APIlern kullanılması için kullanıcıya ROLE_ADMIN rolü tanımlanmaldır. /save/user API si POST türünde çalıştırılmalıdır. (Tüm servislerin secure olması ve basic auth)
+1./user/save APIsi ile Postman den sisteme ilk başta kullanıcı tanımlanmalıdır, zira /user/save BasicAuth olmayan tek API dir ve öteki APIlern kullanılması için kullanıcıya ROLE_ADMIN rolü tanımlanmaldır. /save/user API si POST türünde çalıştırılmalıdır. 
+* Tüm servislerin secure olması ve basic auth.
 
 http://localhost:8080/user/save
 
@@ -40,7 +43,8 @@ http://localhost:8080/user/save
 }
 ```
 
-2.Bu API ile sisteme kitapçı kaydedilmelidir ve POST türünde çalıştırılmalıdır. (Kitapçıların sisteme kaydedilmesi)
+2.Bu API ile sisteme kitapçı kaydedilmelidir ve POST türünde çalıştırılmalıdır.
+*  Kitapçıların sisteme kaydedilmesi.
 
 http://localhost:8080/bookstore/save
 
@@ -63,8 +67,8 @@ http://localhost:8080/book/save
 }
 ```
 
-
-4.Kaydedilen kitabın, kitapçıya tanımlanması gerekmektdir. Path variable olarak sırasıyla book id ve bookstore id verilmelidir ve PUT türünde çalıştırılmalıdır. (Kitapçılarla bağlantılı şekilde kitapların kaydedilmesi.)
+4.Kaydedilen kitabın, kitapçıya tanımlanması gerekmektdir. Path variable olarak sırasıyla book id ve bookstore id verilmelidir ve PUT türünde çalıştırılmalıdır. 
+*  Kitapçılarla bağlantılı şekilde kitapların kaydedilmesi.
 
 http://localhost:8080/bookstorepurchase/book/{bookId}/add-to-bookstore/{booksotreId}
 
@@ -73,7 +77,9 @@ http://localhost:8080/bookstorepurchase/book/{bookId}/add-to-bookstore/{booksotr
 http://localhost:8080/bookstorepurchase/book/1/add-to-bookstore/1
 ```
 
-5.Ilgili kitapçıya kitap tanımlandıktan sonra kullanıcılar ilgili kitaçıdan kitabı kiralamak için aşağıdaki API kullanılır. Bu API headerına Param key value bilgileri yazılmalıdır ve POST türünde çalıştırılmalıdır. (Kullanıcıların ilgili kitapçıdan istediği tarih aralığı için istediği kitabı talep etmesi. İstenilen tarih aralığında ilgili kitap farklı bir kullanıcıda değilse, isteyen kullanıcıya tanımlanması.)
+5.Ilgili kitapçıya kitap tanımlandıktan sonra kullanıcılar ilgili kitaçıdan kitabı kiralamak için aşağıdaki API kullanılır. Bu API headerına Param key value bilgileri yazılmalıdır ve POST türünde çalıştırılmalıdır. 
+*  Kullanıcıların ilgili kitapçıdan istediği tarih aralığı için istediği kitabı talep etmesi.
+* İstenilen tarih aralığında ilgili kitap farklı bir kullanıcıda değilse, isteyen kullanıcıya tanımlanması.
 
 http://localhost:8080/bookstorerent/rent
 
@@ -86,7 +92,9 @@ KEYS: userId, bookstoreId, bookId, rentalDate, returnDate
 VALUE: 1, 1, 1, 2023-03-07, 2023-03-14
 ```
 
-6.Kitapçıların günlük kiraladığı total kitap raporunu görebilmek için aşağıdaki apiyi ullanmamız gerekmektedir. Bu API headerına Param key value bilgileri yazılmalıdır ve GET türünde çalıştırılmalıdır. (Gün bazında hangi gün kaç kitap ödünç verildiğinin raporlanması.)
+
+6.Kitapçıların günlük kiraladığı total kitap raporunu görebilmek için aşağıdaki apiyi ullanmamız gerekmektedir. Bu API headerına Param key value bilgileri yazılmalıdır ve GET türünde çalıştırılmalıdır.
+*  Gün bazında hangi gün kaç kitap ödünç verildiğinin raporlanması.
 
 http://localhost:8080/bookstorereport
 
@@ -97,10 +105,13 @@ KEY: rentalDate
 VALUE: 2023-03-07
 ```
 ## NOTLAR
-Not1: Kitap kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir. 
+Not1: Kitap kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir.
 
-Not2: Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır. (Birim testler)
+Not2: Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır.
+* Birim testler
 
-Not3: Sisteme gelen her request ve sistemin döndüğü her respons veri tabanında "log" tablosunda görüntülenebilir, bu işlemde AOP kullanılmıştır. (Sisteme gelen tüm requestler ve dönülen response ların bir db tablosuna kaydedilmesi )
+Not3: Sisteme gelen her request ve sistemin döndüğü her respons veri tabanında "log" tablosunda görüntülenebilir, bu işlemde AOP kullanılmıştır.
+* Sisteme gelen tüm requestler ve dönülen response ların bir db tablosuna kaydedilmesi.
 
-Not4: Sistemde veri tabanı olarak MySQL kullanılmıştır. (MySQL)
+Not4: Sistemde veri tabanı olarak MySQL kullanılmıştır.
+* Veri tabanı olarak PostgreSQL veya MySQL kullanılması.
