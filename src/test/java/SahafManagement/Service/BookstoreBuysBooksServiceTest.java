@@ -20,18 +20,19 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BookstoreBuysBooksServiceTest {
 
-    @Mock
-    private IBookRepository iBookRepository;
-    @Mock
-    private IBookstoreRepository iBookstoreRepository;
-    @InjectMocks
-    private BookstoreBuysBooksService bookstoreBuysBooksService;
+        @Mock
+        private IBookRepository iBookRepository;
+        @Mock
+        private IBookstoreRepository iBookstoreRepository;
+        @InjectMocks
+        private BookstoreBuysBooksService bookstoreBuysBooksService;
 
     @Test
     public void saveBookToBookstore_WhenBookAndBookstoreExists_ShouldSaveBookToBookstore() throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
@@ -76,20 +77,18 @@ public class BookstoreBuysBooksServiceTest {
     }
 
     @Test(expected = BookAvailableException.class)
-    public void testSaveBookToBookstore_WhenBookIsAlreadyAvailable_ShouldThrowBookAvailableException() throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
+    public void testSaveBookToBookstore_WhenBookIsAlreadyAvailable_ShouldThrowBookAvailableException() throws Exception {
         Long bookId = 1L;
-        Long bookstoreId = 1L;
+        Long bookstoreId = 2L;
         Book book = new Book();
         book.setBookId(bookId);
-        List<Bookstore> bookstores = new ArrayList<>();
         Bookstore bookstore = new Bookstore();
         bookstore.setBookstoreId(bookstoreId);
-        bookstores.add(bookstore);
-        book.setBookBookstores(bookstores);
-
-        Mockito.when(iBookRepository.findById(bookId)).thenReturn(Optional.of(book));
-        Mockito.when(iBookstoreRepository.findById(bookstoreId)).thenReturn(Optional.of(bookstore));
-
+        List<Book> bookstoreBooksList = new ArrayList<>();
+        bookstoreBooksList.add(book);
+        bookstore.setBookstoreBooks(bookstoreBooksList);
+        when(iBookRepository.findById(bookId)).thenReturn(Optional.of(book));
+        when(iBookstoreRepository.findById(bookstoreId)).thenReturn(Optional.of(bookstore));
 
         bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
     }
