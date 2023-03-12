@@ -32,26 +32,25 @@ public class BookstoreBuysBooksService {
     }
 
     public void saveBookToBookstore(Long bookId, Long bookstoreId) throws BookstoreNotFoundException, BookNotFoundException, BookAvailableException {
-        Optional<Book> optionalBook = iBookRepository.findById(bookId);
-        if (!optionalBook.isPresent()) {
-            throw new BookNotFoundException("Book #"+bookId + " not found.");
-        }
+        Book book = iBookRepository.findById(bookId).orElseThrow(()->new BookNotFoundException("Book #"+bookId + " not found."));
 
-        Optional<Bookstore> optionalBookstore = iBookstoreRepository.findById(bookstoreId);
-        if (!optionalBookstore.isPresent()) {
-            throw new BookstoreNotFoundException("Bookstore #"+bookstoreId + " not found.");
-        }
+        Bookstore bookstore = iBookstoreRepository.findById(bookstoreId).orElseThrow(()->new BookstoreNotFoundException("Bookstore #"+bookstoreId + " not found."));
 
-        Book book = optionalBook.get();
-        Bookstore bookstore = optionalBookstore.get();
-        List<Bookstore> bookstoreList = book.getBookBookstores();
-
-        if(bookstoreList.contains(bookstore)){
+        boolean bookAvailable = bookstore.getBookstoreBooks().stream().anyMatch(booksId -> booksId.getBookId().equals(bookId));
+        if (bookAvailable) {
             throw new BookAvailableException("Book #" + bookId + " is already available in Bookstore #" + bookstoreId);
         }
 
-        bookstoreList.add(bookstore);
-        book.setBookBookstores(bookstoreList);
+        List<Book> bookstoreBooks = bookstore.getBookstoreBooks();
+        bookstoreBooks.add(book);
+        bookstore.setBookstoreBooks(bookstoreBooks);
+
+        List<Bookstore> bookBookstores = book.getBookBookstores();
+        bookBookstores.add(bookstore);
+        book.setBookBookstores(bookBookstores);
+
+        iBookstoreRepository.save(bookstore);
         iBookRepository.save(book);
+
     }
 }
