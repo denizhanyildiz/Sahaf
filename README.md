@@ -6,7 +6,7 @@ Sahaf Manager Application
 ## Docker
 Uygulamayı Docker ile başlatmak için bilgisayarınızda docker yüklü olması gerekmektedir. (Docker)
 
-* Ardından Maven/Sahaf/Lifecycle install çalıştırılarak Sahaf/Target klasörü altında "Sahaf-0.0.1-SNAPSHOT.jar" ve "Sahaf-0.0.1-SNAPSHOT.jar.original" dosyaları yaratılır. Yada IDE sisteminin terminalinden aşağıdali kod çalıştırılabilir.
+* Ardından Maven/Sahaf/Lifecycle install çalıştırılarak Sahaf/Target klasörü altında "Sahaf-0.0.1-SNAPSHOT.jar" ve "Sahaf-0.0.1-SNAPSHOT.jar.original" dosyaları yaratılır. Yada IDE sisteminin terminalinden aşağıdali kod çalıştırılabilir. 
 ```sh  
 mvn clean install
 ```
@@ -24,7 +24,7 @@ docker-compose up
 Sahaf uygulamasıyla mysql conteinerları aynı network ile iletişim kurarak bilgisayarımızda ayağa kalkmış olur. Postman veya tarayıcıdan ilgili API ler test edilebilir.
 Docker Desktop uygulamasında ayağakalkan Container lari görebiliriz.
 
-Not: Burada dikkat edilmesi gereken unsur uygulamaların ilişkili olduğu portların kulanılmıyor olması gerekmektedir.
+Not: Burada dikkat edilmesi gereken unsur uygulamaların ilişkili olduğu portların kulanılmıyor olması gerekmektedir. 
 (Sahaf Application 8080, mysql 3307)
 
 ## Manuel Test
@@ -60,7 +60,7 @@ http://localhost:8080/bookstore/save
 }
 ```
 
-3.Bu API ile sisteme bir adet kitap kaydedilmelidir ve POST türünde çalıştırılmalıdır.
+3.Bu API ile sisteme bir adet kitap kaydedilmelidir ve POST türünde çalıştırılmalıdır. 
 
 http://localhost:8080/book/save
 
@@ -109,7 +109,7 @@ KEY: rentalDate
 VALUE: 2023-03-07
 ```
 ## NOTLAR
-Not1: Kitap kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir.
+Not1: Kitap kitapçıda kiralanmışsa başka bir kullanıcı tarafından kiralanamaz fakat aynı kitap başka kitapçıda varsa kullanıcı başka kitapçıdan kitabı kiralayabilir. 
 
 Not2: Uygulama içerisinde Unit Testler sadece istenen APIlerin servislerine yazılmıştır.
 * Birim testler.
