@@ -1,7 +1,7 @@
 # Sahaf
 Sahaf Manager Application
 * Spring 3.0.4
-* Java 17
+* Java 19
 
 ## Docker
 Uygulamayı Docker ile başlatmak için bilgisayarınızda docker yüklü olması gerekmektedir. (Docker)
