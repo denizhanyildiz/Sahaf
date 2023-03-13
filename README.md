@@ -6,7 +6,10 @@ Sahaf Manager Application
 ## Docker
 Uygulamayı Docker ile başlatmak için bilgisayarınızda docker yüklü olması gerekmektedir. (Docker)
 
-Ardından Maven/Sahaf/Lifecycle install çalıştırılarak Sahaf/Target klasörü altında "Sahaf-0.0.1-SNAPSHOT.jar" ve "Sahaf-0.0.1-SNAPSHOT.jar.original" dosyaları yaratılır.
+* Ardından Maven/Sahaf/Lifecycle install çalıştırılarak Sahaf/Target klasörü altında "Sahaf-0.0.1-SNAPSHOT.jar" ve "Sahaf-0.0.1-SNAPSHOT.jar.original" dosyaları yaratılır. Yada IDE sisteminin terminalinden aşağıdali kod çalıştırılabilir. 
+```sh  
+mvn clean install
+```
 
 * Kullanılan IDE sisteminin terminalinde docker'ı build etmek için ilk olarak aşağıdaki kodu yazarak çalıştırınız.
 ```sh  
