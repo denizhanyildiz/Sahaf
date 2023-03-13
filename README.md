@@ -11,7 +11,7 @@ Uygulamayı Docker ile başlatmak için bilgisayarınızda docker yüklü olmas�
 mvn clean install
 ```
 
-* Kullanılan IDE sisteminin terminalinde docker'ı build etmek için ilk olarak aşağıdaki kodu yazarak çalıştırınız.
+* Kullanılan IDE sisteminin terminalinde docker'ı build etmek için ikinci olarak aşağıdaki kodu yazarak çalıştırınız.
 ```sh  
 docker build .
 ```
