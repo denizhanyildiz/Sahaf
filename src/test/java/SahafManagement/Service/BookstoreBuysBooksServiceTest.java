@@ -47,9 +47,9 @@ public class BookstoreBuysBooksServiceTest {
 
         bookstoreBuysBooksService.saveBookToBookstore(bookId, bookstoreId);
 
-        Mockito.verify(iBookRepository, times(1)).findById(bookId);
-        Mockito.verify(iBookstoreRepository, times(1)).findById(bookstoreId);
-        Mockito.verify(iBookRepository, times(1)).save(book);
+        Mockito.verify(iBookRepository).findById(bookId);
+        Mockito.verify(iBookstoreRepository).findById(bookstoreId);
+        Mockito.verify(iBookRepository).save(book);
 
         assertEquals(1, book.getBookBookstores().size());
         assertTrue(book.getBookBookstores().contains(bookstore));
